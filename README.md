@@ -1,1 +1,1 @@
-# CS510-Midterm
+# Computing for Scientists (CS 510)
