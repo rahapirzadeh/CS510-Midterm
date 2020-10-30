@@ -11,9 +11,15 @@ if (!require("deSolve")) {
 odeequations <- function(t,y,parameters) 
 { 
   #uninfected target cells, infected target cells, virus
-  Utc <- y[1]; Itc <- y[2]; Vir <- y[3]
+  Utc <- y[1] 
+  Itc <- y[2] 
+  Vir <- y[3]
+  
   #parameters
-  p1<- parameters[1]; p2<- parameters[2]; p3<- parameters[3]; p4 <- parameters[4]
+  p1 <- parameters[1]
+  p2 <- parameters[2] 
+  p3 <- parameters[3]
+  p4 <- parameters[4]
   
   #differential equations
   dUtcdt <- -p1*Vir*Utc
@@ -45,12 +51,18 @@ parameters <- c(p1,p2,p3,p4)
 timevec <- seq(0,20,.1) 
 
 odeoutput <- lsoda(Y0,timevec,odeequations,parameters)
+odeoutput
 
 #discrete time model
 dt <- .05
 t.discrete <- seq(0,20,by=dt)
-Uvec <- rep(0,length(t.discrete)); Ivec <- Uvec; Vvec <- Uvec
-Uvec[1] <- Utc0; Ivec[1] <- Itc0; Vvec[1] <- Vir0
+Uvec <- rep(0,length(t.discrete))
+Ivec <- Uvec
+Vvec <- Uvec
+
+Uvec[1] <- Utc0
+Ivec[1] <- Itc0
+Vvec[1] <- Vir0
 
 #time(in days) loop for the discrete time model
 for (n in 1:(length(t.discrete)-1)) 
@@ -64,6 +76,7 @@ for (n in 1:(length(t.discrete)-1))
 #plot
 
 #Uninfected plot
+# plot shows Uninfected target cells over discrete and continuous time period
 plot(odeoutput[,1],odeoutput[,2],type="l",lwd=2,
      xlab="Time (days)", ylab="Number of Cells", main ="Uninfected", sub = "Continous vs. Discrete",
      log="y",xlim=c(0,20),ylim=c(1,1e9), 
@@ -72,6 +85,7 @@ lines(t.discrete,Uvec,col="darkgreen",lwd=2,lty=2)
 legend("topright", c("Uninfected","Uninfected - discrete"),col = c("green","darkgreen"),lwd=2,lty=c(1,2))
 
 #Infected plot
+# plot shows infected target cells over discrete and continuous time period
 plot(odeoutput[,1],odeoutput[,3],type="l",lwd=2,
      xlab="Time (days)",ylab="Number of Cells",main ="Infected",sub = "Continous vs. Discrete",
      log="y",xlim=c(0,20),ylim=c(1,1e9),
@@ -80,6 +94,7 @@ lines(t.discrete,Ivec,type="l",col="darkred",lwd=2,lty=2)
 legend("topright", c("Infected","Infected - discrete"),col = c("red","darkred"),lwd=2,lty=c(1,2))
 
 #Virus plot
+# plot shows the virus over discrete and continuous time period
 plot(odeoutput[,1],odeoutput[,4],type="l",lwd=2,
      xlab="Time (days)",ylab="Number of Virus",main ="Virus",sub = "Continous vs. Discrete",
      log="y",xlim=c(0,20),ylim=c(1,1e9),
@@ -87,6 +102,5 @@ plot(odeoutput[,1],odeoutput[,4],type="l",lwd=2,
 lines(t.discrete,Vvec,type="l",col="darkblue",lwd=2,lty=2)
 legend("topright", c("Virus","Virus - discrete"),col = c("blue", "darkblue"),lwd=2,lty=c(1,2))
 
-#add comments on graphs, vertical axis label, legend, 
 
 
