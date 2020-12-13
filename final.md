@@ -13,3 +13,16 @@ Computing for Scientists (CS 510)- Final
   - Line 1 describes the rate at which the virus infects uninfected target-cells and die
   - Line 2 describes the how the virus infects target-cells at a rate p_1 and infected cells die at a rate p_2
   - Line 3 describes how new virus particles are produced at a rate p_3 and are cleared at a rate p_4.
+  
+  
+For the project, I Simplified the models and recreated discrete and continuous time models of a virus infection in R. First I declared the differential equations. Then I initialized the variables, and gave values to the parameters.  
+  
+## Plots
+![Plot](https://github.com/rahapirzadeh/CS510-Midterm/blob/main/plots/Screen%20Shot%202020-12-12%20at%205.15.38%20PM.png)
+![Plot](https://github.com/rahapirzadeh/CS510-Midterm/blob/main/plots/Screen%20Shot%202020-12-12%20at%205.15.53%20PM.png)
+![Plot](https://github.com/rahapirzadeh/CS510-Midterm/blob/main/plots/Screen%20Shot%202020-12-12%20at%205.16.05%20PM.png)
+
+The plots show both the discrete and continous time. For each of the plots the continous and discrete times are very similar, not having much of a difference. 
+
+## Future Work 
+  It was interesting to adapt a model to have a visual. The paper goes further with the math behind the differential equations and how they are derived and less so visualizing the data so it was great to add that. With my model you have the ability to see how the graph alters by changing out the variables. Something I would like to do to expand this project would be to make it executable by a command line prompt where users have the chance to input numbers instead of manually altering the values and parameters.
