@@ -24,5 +24,8 @@ For the project, I Simplified the models and recreated discrete and continuous t
 
 The plots show both the discrete and continous time. For each of the plots the continous and discrete times are very similar, not having much of a difference. 
 
+## Changes from Midterm
+  From the midterm release, I fixed the code to better support the organization set forth in Wilson et al. 2014 and the Advanced R book. There were slight changes such as adding spaces to seperate everything and making sure varible names had underscores even if it was a number. I also added a convergence test and a Readme file. 
+
 ## Future Work 
   It was interesting to adapt a model to have a visual. The paper goes further with the math behind the differential equations and how they are derived and less so visualizing the data so it was great to add that. With my model you have the ability to see how the graph alters by changing out the variables. Something I would like to do to expand this project would be to make it executable by a command line prompt where users have the chance to input numbers instead of manually altering the values and parameters.
