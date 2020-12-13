@@ -17,10 +17,14 @@ ode_equations <- function (t, y, parameters)
   Vir <- y[3]
   
   # parameters
+  # rate virus infects target-cells
   p_1 <- parameters[1]
-  p_2 <- parameters[2] 
-  p_3 <- parameters[3]
-  p_4 <- parameters[4]
+  # rate infected cells die 
+  p_2 <- parameters[2]  
+  # rate new virus particles are produced
+  p_3 <- parameters[3]    
+  # rate virus particles are cleared 
+  p_4 <- parameters[4]      
   
   # differential equations
   d_Utc_dt <- -p_1 * Vir * Utc
