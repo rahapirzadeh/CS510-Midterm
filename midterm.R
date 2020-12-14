@@ -8,6 +8,11 @@ if (!require ("deSolve")) {
   library(deSolve)
 }
 
+if (!require ("testthat")) {
+  install.packages("testthat")
+  library(testthat)
+}
+
 # ODE = Ordinary Differential Equations
 ode_equations <- function (t, y, parameters) 
 { 
@@ -108,4 +113,7 @@ lines(t_discrete, Vvec, type = "l", col = "darkblue", lwd = 2, lty = 2)
 legend("topright", c("Virus", "Virus - discrete"), col = c("blue", "darkblue"), lwd =2, lty = c(1, 2))
 
 
-
+# NOT RUN {
+dir(testthat_examples())
+testthat_example("success")
+# }
