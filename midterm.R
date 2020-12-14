@@ -30,9 +30,10 @@ ode_equations <- function (t, y, parameters)
   d_Utc_dt <- -p_1 * Vir * Utc
   d_Itc_dt <- p_1 * Vir * Utc - p_2 * Itc
   d_Vir_dt <- p_3 * Itc - p_4 * Vir
-
+  
   return(list(c(d_Utc_dt, d_Itc_dt, d_Vir_dt)))
 } 
+
 
 # main
 
@@ -55,7 +56,7 @@ parameters <- c(p_1, p_2, p_3, p_4)
 # vector of times for which integration is evaluated from 0 to 10 days in steps of .1
 time_vec <- seq(0, 20, .1) 
 
-ode_output <- lsoda(Y0, time_vec, ode_equations, parameters)
+ode_output <- lsoda(Y_0, time_vec, ode_equations, parameters)
 head(ode_output)
 
 # discrete time model
@@ -77,7 +78,6 @@ for(n in 1: (length (t_discrete) - 1))
   Vvec[n + 1] <- Vvec[n] + dt * (p_3 * Ivec[n] - p_4 * Vvec[n])
 }
 
-
 # Plots
 
 # Uninfected plot
@@ -86,7 +86,7 @@ plot(ode_output[,1], ode_output[,2], type = "l", lwd = 2,
      xlab = "Time (days)", ylab = "Number of Cells", main = "Uninfected", sub = "Continous vs. Discrete",
      log = "y", xlim = c(0, 20) , ylim = c(1, 1e9), 
      col = "green", col.main = "deeppink", cex.main = 2)
-lines(t.discrete, Uvec, col = "darkgreen", lwd = 2, lty = 2)
+lines(t_discrete, Uvec, col = "darkgreen", lwd = 2, lty = 2)
 legend("topright", c("Uninfected", "Uninfected - discrete"),col = c("green", "darkgreen"), lwd = 2, lty = c(1,2))
 
 # Infected plot
@@ -95,7 +95,7 @@ plot(ode_output[,1], ode_output[,3], type = "l", lwd = 2,
      xlab = "Time (days)", ylab = "Number of Cells", main = "Infected", sub = "Continous vs. Discrete",
      log = "y", xlim = c(0, 20), ylim = c(1, 1e9),
      col = "red", col.main = "deeppink", cex.main = 2)
-lines(t.discrete, Ivec, type = "l", col = "darkred", lwd = 2,lty = 2)
+lines(t_discrete, Ivec, type = "l", col = "darkred", lwd = 2,lty = 2)
 legend("topright", c("Infected", "Infected - discrete"), col = c("red", "darkred"), lwd = 2, lty = c(1, 2))
 
 # Virus plot
@@ -104,7 +104,7 @@ plot(ode_output[,1], ode_output[,4], type = "l", lwd = 2,
      xlab = "Time (days)", ylab = "Number of Virus", main = "Virus", sub = "Continous vs. Discrete",
      log = "y", xlim = c(0, 20), ylim = c(1, 1e9),
      col = "blue", col.main = "deeppink", cex.main = 2)
-lines(t.discrete, Vvec, type = "l", col = "darkblue", lwd = 2, lty = 2)
+lines(t_discrete, Vvec, type = "l", col = "darkblue", lwd = 2, lty = 2)
 legend("topright", c("Virus", "Virus - discrete"), col = c("blue", "darkblue"), lwd =2, lty = c(1, 2))
 
 
